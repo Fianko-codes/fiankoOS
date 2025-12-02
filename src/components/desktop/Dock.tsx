@@ -94,10 +94,10 @@ export const Dock = () => {
   
   return (
     <motion.div 
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: 100, opacity: 0, x: '-50%' }}
+      animate={{ y: 0, opacity: 1, x: '-50%' }}
       transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-      className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50"
+      className="fixed bottom-4 left-1/2 z-50"
     >
       <div className="glass-strong rounded-2xl px-4 py-3 flex items-end gap-2">
         {dockApps.map((app) => {

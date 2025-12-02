@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { MapPin, Mail, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 
 export const AboutAppMobile = () => {
     const skills = [
@@ -9,6 +9,9 @@ export const AboutAppMobile = () => {
         { name: 'Python', level: 80, color: 'bg-[hsl(var(--ctp-yellow))]' },
         { name: 'Rust', level: 70, color: 'bg-[hsl(var(--ctp-peach))]' },
         { name: 'Linux', level: 95, color: 'bg-[hsl(var(--ctp-mauve))]' },
+        { name: 'C/C++', level: 90, color: 'bg-[hsl(var(--ctp-red))]' },
+        { name: 'QBASIC', level: 85, color: 'bg-[hsl(var(--ctp-orange))]' },
+        { name: 'HTML/CSS', level: 80, color: 'bg-[hsl(var(--ctp-yellow))]' },
     ];
 
     return (
@@ -24,11 +27,11 @@ export const AboutAppMobile = () => {
                     F
                 </div>
                 <div>
-                    <h1 className="text-3xl font-bold text-[hsl(var(--ctp-text))] mb-1">Fianko</h1>
-                    <p className="text-[hsl(var(--ctp-mauve))] font-medium mb-2">Full Stack Developer</p>
+                    <h1 className="text-3xl font-bold text-[hsl(var(--ctp-text))] mb-1">Anubhav Prasai (aka Fianko)</h1>
+                    <p className="text-[hsl(var(--ctp-mauve))] font-medium mb-2">A high school student Overthinking the simplest things</p>
                     <div className="flex items-center justify-center gap-2 text-[hsl(var(--ctp-subtext0))] text-sm">
                         <MapPin className="w-4 h-4" />
-                        <span>San Francisco, CA</span>
+                        <span>Jhapa, Nepal</span>
                     </div>
                 </div>
             </motion.div>
@@ -43,10 +46,13 @@ export const AboutAppMobile = () => {
                     <span className="text-[hsl(var(--ctp-mauve))]">$</span> whoami
                 </h2>
                 <p className="text-[hsl(var(--ctp-subtext1))] leading-relaxed">
-                    Passionate developer with a love for clean code and beautiful interfaces.
-                    I enjoy building tools that make developers' lives easier and exploring the
-                    intersection of design and technology. When I'm not coding, you'll find me
-                    customizing my Linux setup or contributing to open source projects.
+                Hello! Welcome to my website. I'm Anubhav Prasai, also known as Fianko. 
+                <br /><br />
+                I'm a high school student from Nepal who loves math & CS. I got into the world of coding through QBASIC when I was 12 year old but into the real world of coding when I was 14 years old through C/C++ and I have been trying my best to expand my knowledge ever since.
+                <br /><br />
+                You can find my contact informations below. 
+                <br /><br />
+                Wishing you the best time here and a great journey ahead.
                 </p>
             </motion.div>
 
@@ -69,15 +75,6 @@ export const AboutAppMobile = () => {
                         >
                             <div className="flex justify-between text-sm mb-2">
                                 <span className="text-[hsl(var(--ctp-text))] font-medium">{skill.name}</span>
-                                <span className="text-[hsl(var(--ctp-subtext0))]">{skill.level}%</span>
-                            </div>
-                            <div className="h-3 bg-[hsl(var(--ctp-surface0))] rounded-full overflow-hidden">
-                                <motion.div
-                                    initial={{ width: 0 }}
-                                    animate={{ width: `${skill.level}%` }}
-                                    transition={{ delay: 0.5 + i * 0.1, duration: 0.8 }}
-                                    className={`h-full ${skill.color} rounded-full`}
-                                />
                             </div>
                         </motion.div>
                     ))}
@@ -95,10 +92,11 @@ export const AboutAppMobile = () => {
                 </h2>
                 <div className="grid grid-cols-4 gap-3">
                     {[
-                        { icon: Mail, href: 'mailto:hello@fianko.dev', label: 'Email' },
-                        { icon: Github, href: 'https://github.com', label: 'GitHub' },
-                        { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-                        { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+                        { icon: Mail, href: 'mailto:me@anubhavprasai.com.np', label: 'Email' },
+                        { icon: Github, href: 'https://github.com/Fianko-codes', label: 'GitHub' },
+                        { icon: Linkedin, href: 'https://linkedin.com/in/anubhavprasai', label: 'LinkedIn' },
+                        { icon: Twitter, href: 'https://X.com/PrasaiAnubhav', label: 'Twitter' },
+                        { icon: Instagram, href: 'https://www.instagram.com/__dear.honey__/', label: 'Instagram' },
                     ].map(({ icon: Icon, href, label }) => (
                         <a
                             key={label}

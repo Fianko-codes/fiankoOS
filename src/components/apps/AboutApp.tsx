@@ -9,6 +9,9 @@ export const AboutApp = () => {
     { name: 'Python', level: 80, color: 'bg-ctp-yellow' },
     { name: 'Rust', level: 70, color: 'bg-ctp-peach' },
     { name: 'Linux', level: 95, color: 'bg-ctp-mauve' },
+    { name: 'C/C++', level: 90, color: 'bg-ctp-red' },
+    { name: 'QBASIC', level: 85, color: 'bg-ctp-orange' },
+    { name: 'HTML/CSS', level: 80, color: 'bg-ctp-yellow' },
   ];
   
   return (
@@ -46,6 +49,10 @@ export const AboutApp = () => {
           Hello! Welcome to my website. I'm Anubhav Prasai, also known as Fianko. 
           <br /><br />
           I'm a high school student from Nepal who loves math & CS. I got into the world of coding through QBASIC when I was 12 year old but into the real world of coding when I was 14 years old through C/C++ and I have been trying my best to expand my knowledge ever since.
+          <br /><br />
+          You can find my contact informations below. 
+          <br /><br />
+          Wishing you the best time here and a great journey ahead.
         </p>
       </motion.div>
       
@@ -69,15 +76,6 @@ export const AboutApp = () => {
             >
               <div className="flex justify-between text-sm mb-1">
                 <span className="text-ctp-text">{skill.name}</span>
-                <span className="text-ctp-subtext0">{skill.level}%</span>
-              </div>
-              <div className="h-2 bg-ctp-surface0 rounded-full overflow-hidden">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${skill.level}%` }}
-                  transition={{ delay: 0.5 + i * 0.1, duration: 0.8 }}
-                  className={`h-full ${skill.color} rounded-full`}
-                />
               </div>
             </motion.div>
           ))}

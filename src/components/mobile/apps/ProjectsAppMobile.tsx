@@ -3,36 +3,24 @@ import { ExternalLink, Github, Star, GitFork } from 'lucide-react';
 
 const projects = [
     {
-        name: 'fiankoOS',
-        description: 'A "riced" Arch Linux desktop environment running in the browser. Built with React, TypeScript, and Framer Motion.',
-        tech: ['React', 'TypeScript', 'Tailwind', 'Zustand'],
-        stars: 128,
-        forks: 23,
+        name: 'Schwarzschild',
+        description: 'NASA SPACE APPS 2025 HACKATHON [GLOBAL NOMINEE] - A meteor tracking and visualization application built for the Meteor Madness challenge. Features real-time meteor data visualization using Cesium 3D globe.',
+        tech: ['React', 'JavaScript', 'Node.js', 'Cesium', 'NASA API'],
+        github: 'https://github.com/Fianko-codes/Schwarzschild',
+        link: 'https://schwarzschild.anubhavprasai.com.np/',
+        stars: 0,
+        forks: 0,
         color: 'from-[hsl(var(--ctp-mauve))] to-[hsl(var(--ctp-pink))]',
     },
     {
-        name: 'terminal-ui',
-        description: 'A beautiful terminal emulator component for React applications with full xterm.js integration.',
-        tech: ['React', 'xterm.js', 'TypeScript'],
-        stars: 89,
-        forks: 15,
+        name: 'Portfolio Website',
+        description: 'My personal portfolio website showcasing my projects, skills, and experience. Built with modern web technologies and featuring a clean, responsive design.',
+        tech: ['React', 'TypeScript', 'Tailwind CSS'],
+        github: 'https://github.com/Fianko-codes/portfolio',
+        link: 'https://anubhavprasai.com.np',
+        stars: 0,
+        forks: 0,
         color: 'from-[hsl(var(--ctp-teal))] to-[hsl(var(--ctp-green))]',
-    },
-    {
-        name: 'dotfiles',
-        description: 'My personal dotfiles for Arch Linux + Hyprland. Catppuccin Mocha themed everything.',
-        tech: ['Shell', 'Lua', 'CSS'],
-        stars: 256,
-        forks: 67,
-        color: 'from-[hsl(var(--ctp-blue))] to-[hsl(var(--ctp-sapphire))]',
-    },
-    {
-        name: 'api-toolkit',
-        description: 'A collection of utilities for building robust REST APIs with automatic documentation generation.',
-        tech: ['Node.js', 'Express', 'OpenAPI'],
-        stars: 45,
-        forks: 8,
-        color: 'from-[hsl(var(--ctp-peach))] to-[hsl(var(--ctp-yellow))]',
     },
 ];
 
@@ -72,7 +60,9 @@ export const ProjectsAppMobile = () => {
                                 </h3>
                                 <div className="flex items-center gap-3">
                                     <a
-                                        href="#"
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="text-[hsl(var(--ctp-subtext0))] active:text-[hsl(var(--ctp-text))] 
                              transition-colors touch-manipulation p-2"
                                         onClick={(e) => e.stopPropagation()}
@@ -80,7 +70,9 @@ export const ProjectsAppMobile = () => {
                                         <Github className="w-5 h-5" />
                                     </a>
                                     <a
-                                        href="#"
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="text-[hsl(var(--ctp-subtext0))] active:text-[hsl(var(--ctp-text))] 
                              transition-colors touch-manipulation p-2"
                                         onClick={(e) => e.stopPropagation()}
