@@ -186,15 +186,20 @@ Available commands:
           about: 'about',
           projects: 'projects',
           settings: 'settings',
-          music: 'music',
           code: 'code',
+          blogs: 'blogs',
+          resume: 'resume',
         };
         if (apps[params]) {
           addOutput(`Opening ${params}...`, 'text-ctp-green');
+          const componentMap: Record<string, string> = {
+            code: 'CodeViewer',
+            resume: 'Resume',
+          };
           openWindow({
             id: apps[params],
             title: params.charAt(0).toUpperCase() + params.slice(1),
-            component: params === 'code' ? 'CodeViewer' : params.charAt(0).toUpperCase() + params.slice(1),
+            component: componentMap[params] || params.charAt(0).toUpperCase() + params.slice(1),
             isMinimized: false,
             isMaximized: false,
             position: { x: 150, y: 100 },
@@ -202,7 +207,7 @@ Available commands:
             icon: params,
           });
         } else {
-          addOutput(`Application "${params}" not found. Try: about, projects, settings, music, code`, 'text-ctp-red');
+          addOutput(`Application "${params}" not found. Try: about, projects, settings, code, blogs, resume`, 'text-ctp-red');
         }
         break;
         

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useWMStore } from '@/stores/useWMStore';
-import { Terminal, User, FolderKanban, Settings, Music, Code } from 'lucide-react';
+import { Terminal, User, FolderKanban, Settings, Code } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface DockApp {
   id: string;
@@ -45,14 +46,6 @@ const dockApps: DockApp[] = [
     defaultSize: { w: 750, h: 500 },
   },
   {
-    id: 'music',
-    title: 'Music',
-    icon: <Music className="w-8 h-8" />,
-    component: 'Music',
-    iconName: 'music',
-    defaultSize: { w: 350, h: 450 },
-  },
-  {
     id: 'settings',
     title: 'Settings',
     icon: <Settings className="w-8 h-8" />,
@@ -64,6 +57,68 @@ const dockApps: DockApp[] = [
 
 export const Dock = () => {
   const { openWindow, windows, focusWindow, restoreWindow } = useWMStore();
+  const [isHidden, setIsHidden] = useState(false);
+  const [mouseNearBottom, setMouseNearBottom] = useState(false);
+  
+  // Check if any window overlaps with Dock area
+  useEffect(() => {
+    const checkOverlap = () => {
+      const viewportHeight = window.innerHeight;
+      const viewportWidth = window.innerWidth;
+      
+      // Check if any window is maximized - if so, hide Dock (unless mouse is near bottom)
+      const hasMaximizedWindow = windows.some(win => win.isMaximized && !win.isMinimized);
+      if (hasMaximizedWindow) {
+        setIsHidden(!mouseNearBottom);
+        return;
+      }
+      
+      // Dock area: bottom 16px (bottom-4) + ~80px height = ~96px from bottom
+      const dockAreaTop = viewportHeight - 96;
+      const dockAreaBottom = viewportHeight - 16;
+      
+      // Dock is centered horizontally
+      const dockCenterX = viewportWidth / 2;
+      const dockWidth = 400; // approximate Dock width
+      const dockLeft = dockCenterX - dockWidth / 2;
+      const dockRight = dockCenterX + dockWidth / 2;
+      
+      const hasOverlap = windows.some(win => {
+        if (win.isMinimized) return false;
+        
+        const winBottom = win.position.y + win.size.h;
+        const winTop = win.position.y;
+        const winLeft = win.position.x;
+        const winRight = win.position.x + win.size.w;
+        
+        // Check if window overlaps with Dock area vertically
+        const verticalOverlap = winBottom > dockAreaTop && winTop < dockAreaBottom;
+        
+        // Check if window overlaps horizontally with Dock
+        const horizontalOverlap = winRight > dockLeft && winLeft < dockRight;
+        
+        return verticalOverlap && horizontalOverlap;
+      });
+      
+      setIsHidden(hasOverlap && !mouseNearBottom);
+    };
+    
+    checkOverlap();
+    const interval = setInterval(checkOverlap, 100);
+    
+    return () => clearInterval(interval);
+  }, [windows, mouseNearBottom]);
+  
+  // Track mouse position near bottom of screen
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const distanceFromBottom = window.innerHeight - e.clientY;
+      setMouseNearBottom(distanceFromBottom < 120); // Show Dock when mouse is within 120px of bottom
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
   
   const handleAppClick = (app: DockApp) => {
     const existingWindow = windows.find(w => w.id === app.id);
@@ -95,9 +150,35 @@ export const Dock = () => {
   return (
     <motion.div 
       initial={{ y: 100, opacity: 0, x: '-50%' }}
-      animate={{ y: 0, opacity: 1, x: '-50%' }}
-      transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
+      animate={{ 
+        y: isHidden ? 100 : 0, 
+        opacity: isHidden ? 0 : 1, 
+        x: '-50%' 
+      }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className="fixed bottom-4 left-1/2 z-50"
+      onMouseEnter={() => setIsHidden(false)}
+      onMouseLeave={() => {
+        // Check if any window is maximized - if so, hide Dock (unless mouse is near bottom)
+        const hasMaximizedWindow = windows.some(win => win.isMaximized && !win.isMinimized);
+        if (hasMaximizedWindow) {
+          setIsHidden(!mouseNearBottom);
+          return;
+        }
+        
+        // Only hide if there's overlap and mouse is not near bottom
+        const viewportHeight = window.innerHeight;
+        const dockAreaTop = viewportHeight - 96;
+        
+        const hasOverlap = windows.some(win => {
+          if (win.isMinimized) return false;
+          const winBottom = win.position.y + win.size.h;
+          return winBottom > dockAreaTop;
+        });
+        if (hasOverlap && !mouseNearBottom) {
+          setIsHidden(true);
+        }
+      }}
     >
       <div className="glass-strong rounded-2xl px-4 py-3 flex items-end gap-2">
         {dockApps.map((app) => {

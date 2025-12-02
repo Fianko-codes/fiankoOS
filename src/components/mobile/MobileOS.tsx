@@ -9,17 +9,19 @@ import { MobileAppContainer } from './MobileAppContainer';
 import { AboutAppMobile } from './apps/AboutAppMobile';
 import { ProjectsAppMobile } from './apps/ProjectsAppMobile';
 import { TerminalAppMobile } from './apps/TerminalAppMobile';
-import { MusicAppMobile } from './apps/MusicAppMobile';
 import { CodeViewerAppMobile } from './apps/CodeViewerAppMobile';
 import { SettingsAppMobile } from './apps/SettingsAppMobile';
+import { BlogsAppMobile } from './apps/BlogsAppMobile';
+import { ResumeAppMobile } from './apps/ResumeAppMobile';
 
 const APP_COMPONENTS = {
     about: { component: AboutAppMobile, title: 'About Me' },
     projects: { component: ProjectsAppMobile, title: 'Projects' },
     terminal: { component: TerminalAppMobile, title: 'Terminal' },
-    music: { component: MusicAppMobile, title: 'Music' },
     code: { component: CodeViewerAppMobile, title: 'Code Viewer' },
     settings: { component: SettingsAppMobile, title: 'Settings' },
+    blogs: { component: BlogsAppMobile, title: 'Blogs' },
+    resume: { component: ResumeAppMobile, title: 'Resume' },
 };
 
 export const MobileOS = () => {

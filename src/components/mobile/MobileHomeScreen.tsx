@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useMobileStore, MobileAppId } from '@/stores/useMobileStore';
-import { Terminal, User, FolderKanban, Settings, Music, Code } from 'lucide-react';
+import { Terminal, User, FolderKanban, Settings, Code, BookOpen, FileText } from 'lucide-react';
 
 interface MobileApp {
     id: MobileAppId;
@@ -35,9 +35,15 @@ const apps: MobileApp[] = [
         color: 'from-ctp-peach to-ctp-yellow',
     },
     {
-        id: 'music',
-        name: 'Music',
-        icon: <Music className="w-8 h-8" />,
+        id: 'blogs',
+        name: 'Blogs',
+        icon: <BookOpen className="w-8 h-8" />,
+        color: 'from-ctp-blue to-ctp-sapphire',
+    },
+    {
+        id: 'resume',
+        name: 'Resume',
+        icon: <FileText className="w-8 h-8" />,
         color: 'from-ctp-red to-ctp-maroon',
     },
     {

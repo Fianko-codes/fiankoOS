@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type MobileAppId = 'about' | 'projects' | 'terminal' | 'music' | 'code' | 'settings';
+export type MobileAppId = 'about' | 'projects' | 'terminal' | 'code' | 'settings' | 'blogs' | 'resume';
 
 interface MobileState {
     isLocked: boolean;
