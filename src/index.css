@@ -79,21 +79,7 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
 
-  body {
-    @apply bg-background text-foreground font-mono;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  ::selection {
-    background: hsl(var(--ctp-mauve) / 0.3);
-    color: hsl(var(--ctp-text));
-  }
-}
 
 @layer components {
   .glass {
