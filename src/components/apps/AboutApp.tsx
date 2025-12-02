@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { MapPin, Mail, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 
 export const AboutApp = () => {
   const skills = [
@@ -23,11 +23,11 @@ export const AboutApp = () => {
           F
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-ctp-text mb-1">Fianko</h1>
-          <p className="text-ctp-mauve font-medium mb-2">Full Stack Developer</p>
+          <h1 className="text-2xl font-bold text-ctp-text mb-1">Anubhav Prasai (aka Fianko)</h1>
+          <p className="text-ctp-mauve font-medium mb-2">A high school student Overthinking the simplest things</p>
           <div className="flex items-center gap-2 text-ctp-subtext0 text-sm">
             <MapPin className="w-4 h-4" />
-            <span>San Francisco, CA</span>
+            <span>Jhapa, Nepal</span>
           </div>
         </div>
       </motion.div>
@@ -43,10 +43,9 @@ export const AboutApp = () => {
           <span className="text-ctp-mauve">$</span> whoami
         </h2>
         <p className="text-ctp-subtext1 leading-relaxed">
-          Passionate developer with a love for clean code and beautiful interfaces. 
-          I enjoy building tools that make developers' lives easier and exploring the 
-          intersection of design and technology. When I'm not coding, you'll find me 
-          customizing my Linux setup or contributing to open source projects.
+          Hello! Welcome to my website. I'm Anubhav Prasai, also known as Fianko. 
+          <br /><br />
+          I'm a high school student from Nepal who loves math & CS. I got into the world of coding through QBASIC when I was 12 year old but into the real world of coding when I was 14 years old through C/C++ and I have been trying my best to expand my knowledge ever since.
         </p>
       </motion.div>
       
@@ -96,10 +95,11 @@ export const AboutApp = () => {
         </h2>
         <div className="flex gap-3">
           {[
-            { icon: Mail, href: 'mailto:hello@fianko.dev', label: 'Email' },
-            { icon: Github, href: 'https://github.com', label: 'GitHub' },
-            { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-            { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+            { icon: Mail, href: 'mailto:me@anubhavprasai.com.np', label: 'Email' },
+            { icon: Github, href: 'https://github.com/Fianko-codes', label: 'GitHub' },
+            { icon: Linkedin, href: 'https://linkedin.com/in/anubhavprasai', label: 'LinkedIn' },
+            { icon: Twitter, href: 'https://X.com/PrasaiAnubhav', label: 'Twitter' },
+            { icon: Instagram, href: 'https://www.instagram.com/__dear.honey__/', label: 'Instagram' },
           ].map(({ icon: Icon, href, label }) => (
             <a
               key={label}
