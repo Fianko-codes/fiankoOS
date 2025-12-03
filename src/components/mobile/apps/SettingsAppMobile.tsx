@@ -33,8 +33,8 @@ export const SettingsAppMobile = () => {
                                 key={t.variant}
                                 onClick={() => setTheme(t.variant)}
                                 className={`p-4 rounded-xl transition-all active:scale-95 touch-manipulation ${theme === t.variant
-                                        ? 'bg-[hsl(var(--ctp-surface2))] ring-2 ring-[hsl(var(--ctp-mauve))]'
-                                        : 'bg-[hsl(var(--ctp-surface0))] hover:bg-[hsl(var(--ctp-surface1))]'
+                                    ? 'bg-[hsl(var(--ctp-surface2))] ring-2 ring-[hsl(var(--ctp-mauve))]'
+                                    : 'bg-[hsl(var(--ctp-surface0))] hover:bg-[hsl(var(--ctp-surface1))]'
                                     }`}
                             >
                                 <div className={`w-full h-12 rounded-lg bg-gradient-to-r ${t.color} mb-2`} />
@@ -52,65 +52,10 @@ export const SettingsAppMobile = () => {
                 </div>
             </div>
 
-            {/* Preferences Section */}
-            <div>
-                <h2 className="text-xl font-semibold text-[hsl(var(--ctp-text))] mb-4">
-                    Preferences
-                </h2>
-
-                <div className="space-y-3">
-                    {/* Notifications Toggle */}
-                    <div className="p-4 rounded-xl bg-[hsl(var(--ctp-surface0))] flex items-center justify-between touch-manipulation">
-                        <div>
-                            <div className="text-sm font-medium text-[hsl(var(--ctp-text))] mb-1">
-                                Notifications
-                            </div>
-                            <div className="text-xs text-[hsl(var(--ctp-subtext0))]">
-                                Show desktop notifications
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => setNotifications(!notifications)}
-                            className={`w-14 h-8 rounded-full transition-colors relative ${notifications ? 'bg-[hsl(var(--ctp-mauve))]' : 'bg-[hsl(var(--ctp-surface2))]'
-                                }`}
-                        >
-                            <div
-                                className={`absolute top-1 w-6 h-6 rounded-full bg-white transition-transform ${notifications ? 'translate-x-7' : 'translate-x-1'
-                                    }`}
-                            />
-                        </button>
-                    </div>
-
-                    {/* Animations Toggle */}
-                    <div className="p-4 rounded-xl bg-[hsl(var(--ctp-surface0))] flex items-center justify-between touch-manipulation">
-                        <div>
-                            <div className="text-sm font-medium text-[hsl(var(--ctp-text))] mb-1">
-                                Animations
-                            </div>
-                            <div className="text-xs text-[hsl(var(--ctp-subtext0))]">
-                                Enable smooth transitions
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => setAnimations(!animations)}
-                            className={`w-14 h-8 rounded-full transition-colors relative ${animations ? 'bg-[hsl(var(--ctp-mauve))]' : 'bg-[hsl(var(--ctp-surface2))]'
-                                }`}
-                        >
-                            <div
-                                className={`absolute top-1 w-6 h-6 rounded-full bg-white transition-transform ${animations ? 'translate-x-7' : 'translate-x-1'
-                                    }`}
-                            />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             {/* About Section */}
             <div className="pt-6 border-t border-[hsl(var(--ctp-surface1))]">
                 <div className="text-center text-sm text-[hsl(var(--ctp-subtext0))] space-y-1">
                     <p className="font-semibold text-[hsl(var(--ctp-text))]">FiankoOS Mobile</p>
-                    <p>Version 1.0.0</p>
-                    <p className="text-xs">Built with React & Framer Motion</p>
                 </div>
             </div>
         </div>

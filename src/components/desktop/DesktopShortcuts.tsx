@@ -28,24 +28,29 @@ const shortcuts: DesktopShortcut[] = [
 ];
 
 export const DesktopShortcuts = () => {
-  const { openWindow, windows } = useWMStore();
+  const { openWindow, windows, restoreWindow, focusWindow } = useWMStore();
 
   const handleDoubleClick = (shortcut: DesktopShortcut) => {
     const existingWindow = windows.find(w => w.id === shortcut.id);
-    
+
     if (existingWindow) {
+      if (existingWindow.isMinimized) {
+        restoreWindow(shortcut.id);
+      } else {
+        focusWindow(shortcut.id);
+      }
       return;
     }
-    
+
     openWindow({
       id: shortcut.id,
       title: shortcut.name,
       component: shortcut.component,
       isMinimized: false,
       isMaximized: false,
-      position: { 
-        x: 100 + Math.random() * 200, 
-        y: 80 + Math.random() * 100 
+      position: {
+        x: 100 + Math.random() * 200,
+        y: 80 + Math.random() * 100
       },
       size: shortcut.defaultSize,
       icon: shortcut.id,
@@ -83,4 +88,3 @@ export const DesktopShortcuts = () => {
     </div>
   );
 };
-
