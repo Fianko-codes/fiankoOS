@@ -52,7 +52,7 @@ export const MobileOS = () => {
             {/* Main Interface (shown when unlocked) */}
             {!isLocked && (
                 <>
-                    <MobileStatusBar />
+                    <MobileStatusBar isVisible={!activeApp} />
                     <MobileHomeScreen />
 
                     {/* Active App Overlay */}

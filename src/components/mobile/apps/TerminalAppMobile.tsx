@@ -6,33 +6,23 @@ const PROMPT = 'guest@fiankoOS';
 const commands: Record<string, string> = {
     help: `Available commands:
   about    - Display information about me
-  skills   - List my technical skills
   projects - Show my projects
   contact  - Get contact information
   clear    - Clear terminal
   theme    - Show current theme`,
 
-    about: `Fianko - Full Stack Developer
-  
-Passionate developer with expertise in modern web technologies.
-Building elegant solutions at the intersection of design and code.`,
-
-    skills: `Technical Skills:
-  ★★★★★ React, TypeScript, Linux
-  ★★★★☆ Node.js, Python
-  ★★★☆☆ Rust, Go`,
+    about: `Fianko - A high school student Overthinking the simplest things`,
 
     projects: `Featured Projects:
   → fiankoOS     - Browser-based desktop environment
-  → terminal-ui  - React terminal component
-  → dotfiles     - Arch Linux configuration
-  → api-toolkit  - REST API utilities`,
+  → Schwarzschild - A realistic meteor simulator build alongside 5 teammates in two days hackathon.`,
 
     contact: `Contact Information:
-  📧 Email:    hello@fianko.dev
-  🐙 GitHub:   github.com/fianko
-  💼 LinkedIn: linkedin.com/in/fianko
-  🐦 Twitter:  @fianko`,
+  📧 Email:    me@anubhavprasai.com.np
+  🐙 GitHub:   github.com/Fianko-codes
+  💼 LinkedIn: linkedin.com/in/anubhavprasai
+  🐦 Twitter:  @PrasaiAnubhav
+  📸 Instagram: @__dear.honey__`,
 
     theme: `Current Theme: Catppuccin Mocha
   

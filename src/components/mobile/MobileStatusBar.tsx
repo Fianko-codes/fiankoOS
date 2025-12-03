@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Battery, Wifi, Signal } from 'lucide-react';
 
-export const MobileStatusBar = () => {
+interface MobileStatusBarProps {
+    isVisible?: boolean;
+}
+
+export const MobileStatusBar = ({ isVisible = true }: MobileStatusBarProps) => {
     const [currentTime, setCurrentTime] = useState(new Date());
     const [batteryLevel, setBatteryLevel] = useState(85);
 
@@ -30,9 +34,10 @@ export const MobileStatusBar = () => {
     };
 
     return (
-        <div className="fixed top-0 left-0 right-0 h-10 safe-top z-50 
+        <div className={`fixed top-0 left-0 right-0 h-10 safe-top z-50 
                     flex items-center justify-between px-6 text-[hsl(var(--ctp-text))]
-                    bg-gradient-to-b from-black/20 to-transparent">
+                    bg-gradient-to-b from-black/20 to-transparent
+                    transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
 
             {/* Left: Time */}
             <div className="font-semibold text-xs tracking-wide">

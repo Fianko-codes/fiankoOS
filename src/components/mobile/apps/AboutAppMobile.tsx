@@ -7,11 +7,9 @@ export const AboutAppMobile = () => {
         { name: 'TypeScript', level: 90, color: 'bg-[hsl(var(--ctp-blue))]' },
         { name: 'Node.js', level: 85, color: 'bg-[hsl(var(--ctp-green))]' },
         { name: 'Python', level: 80, color: 'bg-[hsl(var(--ctp-yellow))]' },
-        { name: 'Rust', level: 70, color: 'bg-[hsl(var(--ctp-peach))]' },
         { name: 'Linux', level: 95, color: 'bg-[hsl(var(--ctp-mauve))]' },
         { name: 'C/C++', level: 90, color: 'bg-[hsl(var(--ctp-red))]' },
         { name: 'QBASIC', level: 85, color: 'bg-[hsl(var(--ctp-orange))]' },
-        { name: 'HTML/CSS', level: 80, color: 'bg-[hsl(var(--ctp-yellow))]' },
     ];
 
     return (
@@ -27,7 +25,7 @@ export const AboutAppMobile = () => {
                     F
                 </div>
                 <div>
-                    <h1 className="text-3xl font-bold text-[hsl(var(--ctp-text))] mb-1">Anubhav Prasai (aka Fianko)</h1>
+                    <h1 className="text-3xl font-bold text-[hsl(var(--ctp-text))] mb-1">Anubhav Prasai <br />(aka Fianko)</h1>
                     <p className="text-[hsl(var(--ctp-mauve))] font-medium mb-2">A high school student Overthinking the simplest things</p>
                     <div className="flex items-center justify-center gap-2 text-[hsl(var(--ctp-subtext0))] text-sm">
                         <MapPin className="w-4 h-4" />
@@ -46,13 +44,13 @@ export const AboutAppMobile = () => {
                     <span className="text-[hsl(var(--ctp-mauve))]">$</span> whoami
                 </h2>
                 <p className="text-[hsl(var(--ctp-subtext1))] leading-relaxed">
-                Hello! Welcome to my website. I'm Anubhav Prasai, also known as Fianko. 
-                <br /><br />
-                I'm a high school student from Nepal who loves math & CS. I got into the world of coding through QBASIC when I was 12 year old but into the real world of coding when I was 14 years old through C/C++ and I have been trying my best to expand my knowledge ever since.
-                <br /><br />
-                You can find my contact informations below. 
-                <br /><br />
-                Wishing you the best time here and a great journey ahead.
+                    Hello! Welcome to my website. I'm Anubhav Prasai, also known as Fianko.
+                    <br /><br />
+                    I'm a high school student from Nepal who loves math & CS. I got into the world of coding through QBASIC when I was 12 year old but into the real world of coding when I was 14 years old through C/C++ and I have been trying my best to expand my knowledge ever since.
+                    <br /><br />
+                    You can find my contact informations below.
+                    <br /><br />
+                    Wishing you the best time here and a great journey ahead.
                 </p>
             </motion.div>
 

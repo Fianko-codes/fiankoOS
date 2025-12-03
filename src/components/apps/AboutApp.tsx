@@ -7,17 +7,15 @@ export const AboutApp = () => {
     { name: 'TypeScript', level: 90, color: 'bg-ctp-blue' },
     { name: 'Node.js', level: 85, color: 'bg-ctp-green' },
     { name: 'Python', level: 80, color: 'bg-ctp-yellow' },
-    { name: 'Rust', level: 70, color: 'bg-ctp-peach' },
     { name: 'Linux', level: 95, color: 'bg-ctp-mauve' },
     { name: 'C/C++', level: 90, color: 'bg-ctp-red' },
     { name: 'QBASIC', level: 85, color: 'bg-ctp-orange' },
-    { name: 'HTML/CSS', level: 80, color: 'bg-ctp-yellow' },
   ];
-  
+
   return (
     <div className="h-full p-6 overflow-auto">
       {/* Header */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-start gap-6 mb-8"
@@ -34,9 +32,9 @@ export const AboutApp = () => {
           </div>
         </div>
       </motion.div>
-      
+
       {/* Bio */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
@@ -46,18 +44,18 @@ export const AboutApp = () => {
           <span className="text-ctp-mauve">$</span> whoami
         </h2>
         <p className="text-ctp-subtext1 leading-relaxed">
-          Hello! Welcome to my website. I'm Anubhav Prasai, also known as Fianko. 
+          Hello! Welcome to my website. I'm Anubhav Prasai, also known as Fianko.
           <br /><br />
           I'm a high school student from Nepal who loves math & CS. I got into the world of coding through QBASIC when I was 12 year old but into the real world of coding when I was 14 years old through C/C++ and I have been trying my best to expand my knowledge ever since.
           <br /><br />
-          You can find my contact informations below. 
+          You can find my contact informations below.
           <br /><br />
           Wishing you the best time here and a great journey ahead.
         </p>
       </motion.div>
-      
+
       {/* Skills */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
@@ -68,7 +66,7 @@ export const AboutApp = () => {
         </h2>
         <div className="space-y-3">
           {skills.map((skill, i) => (
-            <motion.div 
+            <motion.div
               key={skill.name}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -81,9 +79,9 @@ export const AboutApp = () => {
           ))}
         </div>
       </motion.div>
-      
+
       {/* Contact */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
