@@ -316,4 +316,6 @@ This project is open source and available for educational purposes. Feel free to
 
 ⭐ Star this repo if you found it helpful!
 
+Huge credits to my coding body, AI for help.
+
 </div>
