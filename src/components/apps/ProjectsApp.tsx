@@ -16,7 +16,7 @@ const projects = [
     name: 'Portfolio Website',
     description: 'My personal portfolio website showcasing my projects, skills, and experience. Built with modern web technologies and featuring a clean, responsive design.',
     tech: ['React', 'TypeScript', 'Tailwind CSS'],
-    github: 'https://github.com/Fianko-codes/portfolio',
+    github: 'https://github.com/Fianko-codes/fiankoOS',
     link: 'https://anubhavprasai.com.np',
     stars: 0,
     forks: 0,
@@ -39,7 +39,7 @@ export const ProjectsApp = () => {
           A collection of my open source work and side projects
         </p>
       </motion.div>
-      
+
       <div className="grid gap-4">
         {projects.map((project, i) => (
           <motion.div
@@ -51,14 +51,14 @@ export const ProjectsApp = () => {
           >
             {/* Gradient accent */}
             <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${project.color}`} />
-            
+
             <div className="p-5">
               <div className="flex items-start justify-between mb-3">
                 <h3 className="text-lg font-semibold text-ctp-text group-hover:text-ctp-mauve transition-colors">
                   {project.name}
                 </h3>
                 <div className="flex items-center gap-3">
-                  <a 
+                  <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -66,7 +66,7 @@ export const ProjectsApp = () => {
                   >
                     <Github className="w-5 h-5" />
                   </a>
-                  <a 
+                  <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -76,15 +76,15 @@ export const ProjectsApp = () => {
                   </a>
                 </div>
               </div>
-              
+
               <p className="text-ctp-subtext1 text-sm mb-4 leading-relaxed">
                 {project.description}
               </p>
-              
+
               <div className="flex items-center justify-between">
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
-                    <span 
+                    <span
                       key={tech}
                       className="px-2 py-1 text-xs rounded-md bg-ctp-surface1 text-ctp-subtext0"
                     >
@@ -92,7 +92,7 @@ export const ProjectsApp = () => {
                     </span>
                   ))}
                 </div>
-                
+
                 <div className="flex items-center gap-4 text-sm text-ctp-subtext0">
                   <span className="flex items-center gap-1">
                     <Star className="w-4 h-4 text-ctp-yellow" />

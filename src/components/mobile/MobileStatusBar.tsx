@@ -30,37 +30,37 @@ export const MobileStatusBar = () => {
     };
 
     return (
-        <div className="fixed top-0 left-0 right-0 h-12 safe-top z-50 
-                    bg-[hsl(var(--ctp-crust))]/95 backdrop-blur-xl
-                    flex items-center justify-between px-4 text-[hsl(var(--ctp-text))]">
+        <div className="fixed top-0 left-0 right-0 h-10 safe-top z-50 
+                    flex items-center justify-between px-6 text-[hsl(var(--ctp-text))]
+                    bg-gradient-to-b from-black/20 to-transparent">
 
             {/* Left: Time */}
-            <div className="font-semibold text-sm">
+            <div className="font-semibold text-xs tracking-wide">
                 {formatTime(currentTime)}
             </div>
 
             {/* Right: Status Icons */}
             <div className="flex items-center gap-2">
                 {/* Signal */}
-                <Signal className="w-4 h-4" />
+                <Signal className="w-3.5 h-3.5" />
 
                 {/* Wifi */}
-                <Wifi className="w-4 h-4" />
+                <Wifi className="w-3.5 h-3.5" />
 
                 {/* Battery */}
                 <div className="flex items-center gap-1">
-                    <span className="text-xs">{batteryLevel}%</span>
-                    <div className="relative w-6 h-3 border border-[hsl(var(--ctp-text))] rounded-sm">
+                    <span className="text-[10px] font-medium">{batteryLevel}%</span>
+                    <div className="relative w-5 h-2.5 border border-[hsl(var(--ctp-text))] rounded-[2px] opacity-80">
                         <div
-                            className={`absolute top-0.5 left-0.5 bottom-0.5 rounded-sm transition-all ${batteryLevel > 20
-                                    ? 'bg-[hsl(var(--ctp-green))]'
-                                    : 'bg-[hsl(var(--ctp-red))]'
+                            className={`absolute top-[1px] left-[1px] bottom-[1px] rounded-[1px] transition-all ${batteryLevel > 20
+                                ? 'bg-[hsl(var(--ctp-text))]'
+                                : 'bg-[hsl(var(--ctp-red))]'
                                 }`}
                             style={{ width: `${Math.max(0, (batteryLevel - 5) / 95 * 100)}%` }}
                         />
                         {/* Battery tip */}
-                        <div className="absolute -right-0.5 top-1/2 -translate-y-1/2 w-0.5 h-1.5 
-                          bg-[hsl(var(--ctp-text))] rounded-r" />
+                        <div className="absolute -right-[3px] top-1/2 -translate-y-1/2 w-[2px] h-1 
+                          bg-[hsl(var(--ctp-text))] rounded-r-[1px]" />
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@ const projects = [
         name: 'Portfolio Website',
         description: 'My personal portfolio website showcasing my projects, skills, and experience. Built with modern web technologies and featuring a clean, responsive design.',
         tech: ['React', 'TypeScript', 'Tailwind CSS'],
-        github: 'https://github.com/Fianko-codes/portfolio',
+        github: 'https://github.com/Fianko-codes/fiankoOS',
         link: 'https://anubhavprasai.com.np',
         stars: 0,
         forks: 0,
