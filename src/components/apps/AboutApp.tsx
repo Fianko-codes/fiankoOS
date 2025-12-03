@@ -20,9 +20,30 @@ export const AboutApp = () => {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-start gap-6 mb-8"
       >
-        <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-ctp-mauve to-ctp-teal flex items-center justify-center text-4xl font-bold text-ctp-crust">
-          F
+        {/* Profile Picture - Replace with your actual image */}
+        <div className="relative group flex-shrink-0">
+          {/* TODO: Replace /pfp.jpg with your actual profile picture path */}
+          <img
+            src="/pfp.jpg"
+            alt="Anubhav Prasai Profile"
+            className="w-24 h-24 rounded-2xl object-cover ring-2 ring-ctp-mauve/30 shadow-lg"
+            onError={(e) => {
+              // Fallback to gradient box if image doesn't exist
+              e.currentTarget.style.display = 'none';
+              e.currentTarget.nextElementSibling.style.display = 'flex';
+            }}
+          />
+          {/* Fallback gradient (shown if image fails to load) */}
+          <div
+            className="w-24 h-24 rounded-2xl bg-gradient-to-br from-ctp-mauve to-ctp-teal flex items-center justify-center text-4xl font-bold text-ctp-crust shadow-lg"
+            style={{ display: 'none' }}
+          >
+            F
+          </div>
+          {/* Hover effect */}
+          <div className="absolute inset-0 rounded-2xl bg-ctp-mauve/10 opacity-0 group-hover:opacity-100 transition-opacity" />
         </div>
+
         <div>
           <h1 className="text-2xl font-bold text-ctp-text mb-1">Anubhav Prasai (aka Fianko)</h1>
           <p className="text-ctp-mauve font-medium mb-2">A high school student Overthinking the simplest things</p>
@@ -48,9 +69,9 @@ export const AboutApp = () => {
           <br /><br />
           I'm a high school student from Nepal who loves math & CS. I got into the world of coding through QBASIC when I was 12 year old but into the real world of coding when I was 14 years old through C/C++ and I have been trying my best to expand my knowledge ever since.
           <br /><br />
-          You can find my contact informations below.
+          The image above is of me visiting the beach for the first time when I attended IM²C awarding summit in Hongkong. You can find my contact informations below.
           <br /><br />
-          Wishing you the best time here and a great journey ahead.
+          Wishing you the best time here and a great journey ahead!
         </p>
       </motion.div>
 

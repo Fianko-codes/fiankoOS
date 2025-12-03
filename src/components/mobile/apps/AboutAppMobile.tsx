@@ -48,9 +48,9 @@ export const AboutAppMobile = () => {
                     <br /><br />
                     I'm a high school student from Nepal who loves math & CS. I got into the world of coding through QBASIC when I was 12 year old but into the real world of coding when I was 14 years old through C/C++ and I have been trying my best to expand my knowledge ever since.
                     <br /><br />
-                    You can find my contact informations below.
+                    The image above is of me visiting the beach for the first time when I attended IM²C awarding summit in Hongkong. You can find my contact informations below.
                     <br /><br />
-                    Wishing you the best time here and a great journey ahead.
+                    Wishing you the best time here and a great journey ahead!
                 </p>
             </motion.div>
 
