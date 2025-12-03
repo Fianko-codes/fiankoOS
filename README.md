@@ -206,7 +206,7 @@ archify-browser-os/
    ```
 
 4. **Open in browser**
-   Navigate to `http://localhost:5173` (or the port shown in terminal)
+   Navigate to `http://localhost:8080` (or the port shown in terminal)
 
 ### Available Scripts
 
@@ -242,12 +242,6 @@ Window management logic is centralized in `src/stores/useWMStore.ts`. You can cu
 
 ## 🌐 Deployment
 
-### Deploy with Lovable
-1. Open [Lovable Project](https://lovable.dev/projects/8c2d5bd0-fcaa-4d97-a973-a31e02f91da2)
-2. Click **Share → Publish**
-3. Your site will be live instantly
-
-### Deploy Manually
 ```bash
 # Build the project
 npm run build
@@ -258,35 +252,12 @@ npm run build
 # - Netlify
 # - GitHub Pages
 # - Cloudflare Pages
-```
-
-### Custom Domain
-To connect a custom domain via Lovable:
-1. Navigate to **Project > Settings > Domains**
-2. Click **Connect Domain**
-3. Follow the DNS configuration instructions
-
-[Learn more about custom domains](https://docs.lovable.dev/features/custom-domain#custom-domain)
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! If you'd like to improve FiankoOS:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ---
 
 ## 📧 Contact
 
 **Anubhav Prasai (Fianko)**
 
-- 🌐 Website: [anubhavprasai.com.np](https://anubhavprasai.com.np)
 - 📧 Email: [me@anubhavprasai.com.np](mailto:me@anubhavprasai.com.np)
 - 💼 LinkedIn: [linkedin.com/in/anubhavprasai](https://linkedin.com/in/anubhavprasai)
 - 🐙 GitHub: [github.com/Fianko-codes](https://github.com/Fianko-codes)
@@ -295,18 +266,12 @@ Contributions are welcome! If you'd like to improve FiankoOS:
 
 ---
 
-## 📄 License
-
-This project is open source and available for educational purposes. Feel free to learn from it and use it as inspiration for your own projects.
-
----
-
 ## 🙏 Acknowledgments
 
 - **Catppuccin** - For the beautiful color schemes
 - **shadcn/ui** - For the excellent component library
-- **Lovable** - For the development platform
 - **React Community** - For the amazing ecosystem
+- **AI** - For the amazing help
 
 ---
 
@@ -315,7 +280,4 @@ This project is open source and available for educational purposes. Feel free to
 **Made with ❤️ by Fianko**
 
 ⭐ Star this repo if you found it helpful!
-
-Huge credits to my coding body, AI for help.
-
 </div>
