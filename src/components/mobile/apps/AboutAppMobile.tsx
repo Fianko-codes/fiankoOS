@@ -20,9 +20,14 @@ export const AboutAppMobile = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex flex-col items-center gap-4 text-center"
             >
-                <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-[hsl(var(--ctp-mauve))] to-[hsl(var(--ctp-teal))] 
-                        flex items-center justify-center text-5xl font-bold text-[hsl(var(--ctp-crust))]">
-                    F
+                <div className="w-32 h-32 rounded-3xl relative bg-gradient-to-br from-[hsl(var(--ctp-mauve))] to-[hsl(var(--ctp-teal))] flex items-center justify-center overflow-hidden">
+                    <span className="text-5xl font-bold text-[hsl(var(--ctp-crust))]">F</span>
+                    <img
+                        src="/pfp.jpg"
+                        alt="Anubhav Prasai"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                    />
                 </div>
                 <div>
                     <h1 className="text-3xl font-bold text-[hsl(var(--ctp-text))] mb-1">Anubhav Prasai <br />(aka Fianko)</h1>

@@ -22,6 +22,16 @@ const projects = [
         forks: 0,
         color: 'from-[hsl(var(--ctp-teal))] to-[hsl(var(--ctp-green))]',
     },
+    {
+    name: 'Blog Site',
+    description: 'Longform explorations of ideas by me possibly on any topic I might be interested in.',
+    tech: ['React', 'Vite', 'Tailwind CSS', 'TypeScript'],
+    github: 'https://github.com/Fianko-codes/blog-site',
+    link: 'https://blog.anubhavprasai.com.np',
+    stars: 0,
+    forks: 0,
+    color: 'from-[hsl(var(--ctp-mauve))] to-[hsl(var(--ctp-pink))]',
+  },
 ];
 
 export const ProjectsAppMobile = () => {
