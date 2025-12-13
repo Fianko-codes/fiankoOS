@@ -22,6 +22,16 @@ const projects = [
     forks: 0,
     color: 'from-ctp-teal to-ctp-green',
   },
+  {
+    name: 'Blog Site',
+    description: 'Longform explorations of ideas by me possibly on any topic I might be interested in.',
+    tech: ['React', 'Vite', 'Tailwind CSS', 'TypeScript'],
+    github: 'https://github.com/Fianko-codes/blog-site',
+    link: 'https://blog.anubhavprasai.com.np',
+    stars: 0,
+    forks: 0,
+    color: 'from-ctp-mauve to-ctp-pink',
+  },
 ];
 
 export const ProjectsApp = () => {
