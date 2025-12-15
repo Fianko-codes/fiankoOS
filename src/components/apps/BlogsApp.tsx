@@ -205,7 +205,7 @@ const BlogPostView = ({ post, onBack }: BlogPostViewProps) => {
           <Button
             variant="ghost"
             size="icon"
-            className="h-10 w-10 hover:bg-red-500 hover:text-white rounded transition-colors"
+            className="h-10 w-10 bg-red-500 text-white hover:bg-red-600 rounded transition-colors"
             onClick={onBack}
           >
             <X className="w-5 h-5" />

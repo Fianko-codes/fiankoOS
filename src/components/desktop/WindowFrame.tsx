@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useWMStore, WindowState } from '@/stores/useWMStore';
 import { X, Square, Maximize2 } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 
 interface WindowFrameProps {
@@ -16,13 +16,68 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
     restoreWindow,
     focusWindow,
     updateWindowPosition,
+    updateWindowSize,
     activeWindowId,
   } = useWMStore();
 
   const constraintsRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [resizeDir, setResizeDir] = useState<string | null>(null);
 
   const isActive = activeWindowId === window.id;
+
+  // Resize logic
+  useEffect(() => {
+    if (!resizeDir) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const { x, y } = window.position;
+      const { w, h } = window.size;
+      const dx = e.movementX;
+      const dy = e.movementY;
+
+      let newW = w;
+      let newH = h;
+      let newX = x;
+      let newY = y;
+
+      if (resizeDir.includes('e')) newW = Math.max(300, w + dx);
+      if (resizeDir.includes('s')) newH = Math.max(200, h + dy);
+      if (resizeDir.includes('w')) {
+        const proposedWidth = w - dx;
+        if (proposedWidth >= 300) {
+          newW = proposedWidth;
+          newX = x + dx;
+        }
+      }
+      if (resizeDir.includes('n')) {
+        const proposedHeight = h - dy;
+        if (proposedHeight >= 200) {
+          newH = proposedHeight;
+          newY = y + dy;
+        }
+      }
+
+      if (newW !== w || newH !== h) {
+        updateWindowSize(window.id, { w: newW, h: newH });
+      }
+      if (newX !== x || newY !== y) {
+        updateWindowPosition(window.id, { x: newX, y: newY });
+      }
+    };
+
+    const handleMouseUp = () => {
+      setResizeDir(null);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [resizeDir, window.id, window.position, window.size, updateWindowSize, updateWindowPosition]);
 
   if (window.isMinimized) {
     return null;
@@ -34,6 +89,11 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
     } else {
       maximizeWindow(window.id);
     }
+  };
+
+  const handleResizeStart = (dir: string) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setResizeDir(dir);
   };
 
   return (
@@ -53,7 +113,7 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
         }}
         exit={{ scale: 0.8, opacity: 0 }}
         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-        drag={!window.isMaximized}
+        drag={!window.isMaximized && !resizeDir}
         dragMomentum={false}
         dragConstraints={constraintsRef}
         onDragStart={() => setIsDragging(true)}
@@ -80,6 +140,20 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
           ${isDragging ? 'cursor-grabbing' : 'cursor-default'}
         `}
       >
+        {/* Resize Handles (Only when not maximized) */}
+        {!window.isMaximized && (
+          <>
+            <div className="absolute top-0 left-0 w-2 h-2 cursor-nw-resize z-50" onMouseDown={handleResizeStart('nw')} />
+            <div className="absolute top-0 right-0 w-2 h-2 cursor-ne-resize z-50" onMouseDown={handleResizeStart('ne')} />
+            <div className="absolute bottom-0 left-0 w-2 h-2 cursor-sw-resize z-50" onMouseDown={handleResizeStart('sw')} />
+            <div className="absolute bottom-0 right-0 w-2 h-2 cursor-se-resize z-50" onMouseDown={handleResizeStart('se')} />
+            <div className="absolute top-0 left-2 right-2 h-1 cursor-n-resize z-40" onMouseDown={handleResizeStart('n')} />
+            <div className="absolute bottom-0 left-2 right-2 h-1 cursor-s-resize z-40" onMouseDown={handleResizeStart('s')} />
+            <div className="absolute left-0 top-2 bottom-2 w-1 cursor-w-resize z-40" onMouseDown={handleResizeStart('w')} />
+            <div className="absolute right-0 top-2 bottom-2 w-1 cursor-e-resize z-40" onMouseDown={handleResizeStart('e')} />
+          </>
+        )}
+
         {/* Window Title Bar */}
         <div
           className={`
@@ -89,23 +163,6 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
           `}
           onDoubleClick={handleMaximize}
         >
-          {/* Window Title (Left aligned mostly, but let's keep it centered if that was the intent, or left with icon? 
-             Previous code had it absolute centered. Let's keep it that way but ensure z-index if buttons cover it.
-             Actually, standard windows usually put title on left or center.
-             The previous code had controls on Left (Mac style).
-             The NEW requirement implies controls on RIGHT (like Windows/PC vibe).
-             Wait, BlogsApp has controls on RIGHT. 
-             The previous WindowFrame had controls on LEFT.
-             If I am matching BlogsApp PC vibe, I should move controls to RIGHT.
-             
-             Let's check previous code again:
-             Previous: Controls (Left) - Title (Center) - Spacer (Right)
-             
-             If I just swap the controls block to be after the title, and change the spacer...
-             
-             Let's enable PC vibe fully: Title Left, Controls Right.
-          */}
-
           <div className="flex items-center gap-2">
             <span className="text-ctp-text text-sm font-medium select-none">
               {window.title}
@@ -132,7 +189,7 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className="h-10 w-10 hover:bg-ctp-red hover:text-white rounded transition-colors"
+              className="h-10 w-10 bg-ctp-red text-white hover:bg-ctp-red/80 rounded transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 closeWindow(window.id);
@@ -144,7 +201,7 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
         </div>
 
         {/* Window Content */}
-        <div className="h-[calc(100%-40px)] overflow-auto bg-ctp-base/90">
+        <div className="h-[calc(100%-48px)] overflow-auto bg-ctp-base/90">
           {children}
         </div>
       </motion.div>
