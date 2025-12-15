@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { useWMStore, WindowState } from '@/stores/useWMStore';
-import { X, Minus, Square, Maximize2 } from 'lucide-react';
+import { X, Square, Maximize2 } from 'lucide-react';
 import { useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 interface WindowFrameProps {
   window: WindowState;
@@ -9,25 +10,24 @@ interface WindowFrameProps {
 }
 
 export const WindowFrame = ({ window, children }: WindowFrameProps) => {
-  const { 
-    closeWindow, 
-    minimizeWindow, 
-    maximizeWindow, 
+  const {
+    closeWindow,
+    maximizeWindow,
     restoreWindow,
-    focusWindow, 
+    focusWindow,
     updateWindowPosition,
     activeWindowId,
   } = useWMStore();
-  
+
   const constraintsRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
-  
+
   const isActive = activeWindowId === window.id;
-  
+
   if (window.isMinimized) {
     return null;
   }
-  
+
   const handleMaximize = () => {
     if (window.isMaximized) {
       restoreWindow(window.id);
@@ -35,16 +35,16 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
       maximizeWindow(window.id);
     }
   };
-  
+
   return (
     <>
       {/* Drag constraints container */}
       <div ref={constraintsRef} className="fixed inset-0 pt-8 pb-24 pointer-events-none" />
-      
+
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ 
-          scale: 1, 
+        animate={{
+          scale: 1,
           opacity: 1,
           x: window.isMaximized ? 0 : window.position.x,
           y: window.isMaximized ? 0 : window.position.y,
@@ -65,7 +65,7 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
           });
         }}
         onMouseDown={() => focusWindow(window.id)}
-        style={{ 
+        style={{
           zIndex: window.zIndex,
           position: window.isMaximized ? 'fixed' : 'absolute',
           top: window.isMaximized ? '32px' : 0,
@@ -81,58 +81,68 @@ export const WindowFrame = ({ window, children }: WindowFrameProps) => {
         `}
       >
         {/* Window Title Bar */}
-        <div 
+        <div
           className={`
-            h-10 flex items-center justify-between px-3
+            h-12 flex items-center justify-between px-3
             bg-ctp-mantle/80 border-b border-ctp-surface0/50
             ${!window.isMaximized ? 'cursor-grab active:cursor-grabbing' : ''}
           `}
           onDoubleClick={handleMaximize}
         >
-          {/* Window Controls */}
+          {/* Window Title (Left aligned mostly, but let's keep it centered if that was the intent, or left with icon? 
+             Previous code had it absolute centered. Let's keep it that way but ensure z-index if buttons cover it.
+             Actually, standard windows usually put title on left or center.
+             The previous code had controls on Left (Mac style).
+             The NEW requirement implies controls on RIGHT (like Windows/PC vibe).
+             Wait, BlogsApp has controls on RIGHT. 
+             The previous WindowFrame had controls on LEFT.
+             If I am matching BlogsApp PC vibe, I should move controls to RIGHT.
+             
+             Let's check previous code again:
+             Previous: Controls (Left) - Title (Center) - Spacer (Right)
+             
+             If I just swap the controls block to be after the title, and change the spacer...
+             
+             Let's enable PC vibe fully: Title Left, Controls Right.
+          */}
+
           <div className="flex items-center gap-2">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                closeWindow(window.id);
-              }}
-              className="w-3 h-3 rounded-full bg-ctp-red hover:bg-ctp-red/80 transition-colors group flex items-center justify-center"
-            >
-              <X className="w-2 h-2 text-ctp-crust opacity-0 group-hover:opacity-100" />
-            </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                minimizeWindow(window.id);
-              }}
-              className="w-3 h-3 rounded-full bg-ctp-yellow hover:bg-ctp-yellow/80 transition-colors group flex items-center justify-center"
-            >
-              <Minus className="w-2 h-2 text-ctp-crust opacity-0 group-hover:opacity-100" />
-            </button>
-            <button
+            <span className="text-ctp-text text-sm font-medium select-none">
+              {window.title}
+            </span>
+          </div>
+
+          {/* Window Controls (Right) */}
+          <div className="flex items-center gap-1" onMouseDown={e => e.stopPropagation()}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-10 w-10 hover:bg-ctp-surface1 rounded"
               onClick={(e) => {
                 e.stopPropagation();
                 handleMaximize();
               }}
-              className="w-3 h-3 rounded-full bg-ctp-green hover:bg-ctp-green/80 transition-colors group flex items-center justify-center"
             >
               {window.isMaximized ? (
-                <Square className="w-1.5 h-1.5 text-ctp-crust opacity-0 group-hover:opacity-100" />
+                <Square className="w-5 h-5 text-ctp-subtext0" />
               ) : (
-                <Maximize2 className="w-2 h-2 text-ctp-crust opacity-0 group-hover:opacity-100" />
+                <Maximize2 className="w-5 h-5 text-ctp-subtext0" />
               )}
-            </button>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-10 w-10 hover:bg-ctp-red hover:text-white rounded transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                closeWindow(window.id);
+              }}
+            >
+              <X className="w-5 h-5" />
+            </Button>
           </div>
-          
-          {/* Window Title */}
-          <span className="text-ctp-text text-sm font-medium absolute left-1/2 -translate-x-1/2">
-            {window.title}
-          </span>
-          
-          {/* Spacer */}
-          <div className="w-16" />
         </div>
-        
+
         {/* Window Content */}
         <div className="h-[calc(100%-40px)] overflow-auto bg-ctp-base/90">
           {children}
