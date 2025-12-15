@@ -252,6 +252,7 @@ npm run build
 # - Netlify
 # - GitHub Pages
 # - Cloudflare Pages
+```
 ---
 
 ## 📧 Contact
